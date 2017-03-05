@@ -1,0 +1,11 @@
+var fs = require('fs');
+
+var file = process.argv[2];
+
+var fileRead = fs.readFileSync(file);  //different than fs.readFile in that is doesn't have a callback. 
+
+var fileString = fileRead.toString();
+
+console.log(fileString.split('\n').length -1);
+
+#https://nodejs.org/api/fs.html#fs_fs_readfilesync_file_options
