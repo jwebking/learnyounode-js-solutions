@@ -1,0 +1,15 @@
+var fs = require('fs');
+
+var dir2 = process.argv[2];
+var dir3 = process.argv[3];
+var filterDir = RegExp('\\.' + dir3 + '$') ;
+
+fs.readdir(dir2, (err, list) => {
+ for (var i = 0; i<list.length; i++) {
+     if (filterDir.test(list[i])){
+         console.log(list[i]);
+     }
+ }
+});
+// pain in the butt using regular expressions. Took me a long time to understand that part. path.extname() wouldn't work. Kept saying undefined. The first part with the backslashes is signaling that the next backslash and . are special, although not to be taken literally. 
+// it matches the word boundry of a .dir3$ so if the ending is .md of a file, the filter is looking for something that starts with . then has the matching ending of a file(md, txt, html....), and that is the last thing in that file name (what the $ does).
