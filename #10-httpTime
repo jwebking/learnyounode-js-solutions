@@ -1,0 +1,27 @@
+ var net = require('net');
+  
+  var input = process.argv[2];
+  
+  function testDate(n) {
+      if (n<10){
+          return "0"+n;
+      } else {
+          return n;
+      }
+  }
+  
+    var server = net.createServer(function (socket) { 
+    
+    var theDate = new Date();
+    
+    var FullDate = 
+     theDate.getFullYear() + "-"
+     + testDate(theDate.getMonth()+1) + "-"     
+     + testDate(theDate.getDate()) + " "   
+     + testDate(theDate.getHours()) + ":"  
+     + testDate(theDate.getMinutes()) + "\n";
+     
+     socket.end(theDate); 
+     }); 
+     
+     server.listen(input);
