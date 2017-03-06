@@ -1,0 +1,15 @@
+var http = require('http');
+var t2p = require('through2-map');
+var input = process.argv[2];
+
+var upperC = t2p(function(info){
+    return info.toString().toUpperCase();
+});
+
+var server = http.createServer(function(request, response){
+    if (request.method == 'POST'){
+        request.pipe(upperC).pipe(response);
+    }
+});
+ 
+server.listen(input);
